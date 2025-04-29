@@ -13,6 +13,7 @@ router = APIRouter(prefix="/dev", tags=["Development"])
 async def seed_sample_data(db: AsyncSession = Depends(get_db)):
     try:
         await create_sample_data(db)
+        return {"message": "Database seeded!"}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 

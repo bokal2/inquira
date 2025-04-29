@@ -7,9 +7,9 @@ from src.entities.customer import Customer, Order, Product, OrderItem
 fake = Faker()
 fake.unique.clear()
 
-statuses = ["Active", "Trial", "Churned"]
-order_statuses = ["Completed", "Pending", "Cancelled"]
-categories = ["SaaS", "Subscription", "Hardware"]
+statuses = ["active", "trial", "churned"]
+order_statuses = ["completed", "pending", "cancelled"]
+categories = ["saas", "subscription", "hardware"]
 
 
 async def create_sample_data(db: AsyncSession):
