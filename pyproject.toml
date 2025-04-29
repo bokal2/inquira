@@ -1,0 +1,38 @@
+[tool.poetry]
+name = "backend"
+version = "0.1.0"
+description = ""
+authors = ["Erick Okal <bobbydasilva98@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+fastapi = "^0.115.12"
+uvicorn = "^0.34.0"
+sqlalchemy = "^2.0.39"
+psycopg2-binary = "^2.9.10"
+asyncpg = "^0.30.0"
+greenlet = "^3.1.1"
+prometheus-fastapi-instrumentator = "^7.1.0"
+python-json-logger = "^3.3.0"
+slowapi = "^0.1.9"
+langchain-community = "^0.3.21"
+langchain-aws = "^0.2.18"
+pgvector = "^0.4.0"
+python-dotenv = "^1.1.0"
+pydantic = "^2.11.3"
+python-multipart = "^0.0.20"
+pypdf = "^5.4.0"
+langchain-openai = "^0.3.14"
+faker = "^37.1.0"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.5"
+pytest-asyncio = "^0.26.0"
+aiosqlite = "^0.21.0"
+pytest-cov = "^6.1.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
