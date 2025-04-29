@@ -1,7 +1,7 @@
 import random
 from faker import Faker
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy import text, select
+from sqlalchemy import text
 from src.entities.customer import Customer, Order, Product, OrderItem
 
 fake = Faker()
@@ -62,27 +62,3 @@ async def create_sample_data(db: AsyncSession):
                         quantity=random.randint(1, 10),
                     )
                     db.add(order_item)
-
-
-async def bulk_update_products(db: AsyncSession):
-    test_products = {
-        1: {
-            "name": "Test product",
-            "category": "Hardware",
-            "price": 20125.32,
-        },
-        2: {
-            "name": "Test product2",
-            "category": "SaaS",
-            "price": 14502.02,
-        },
-    }
-
-    stmt = select(Product).where(Product.id.in_(test_products.keys()))
-    result = await db.execute(stmt)
-    selected_products = result.scalars().all()
-
-    for product in selected_products:
-        for key, value in test_products[product.id].items():
-            setattr(product, key, value)
-    await db.commit()

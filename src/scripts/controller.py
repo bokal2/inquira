@@ -4,7 +4,7 @@ from pydantic import BaseModel
 from enum import StrEnum
 
 from src.dependencies import get_db
-from src.scripts.seed import create_sample_data, bulk_update_products
+from src.scripts.seed import create_sample_data
 
 router = APIRouter(prefix="/dev", tags=["Development"])
 
@@ -27,9 +27,3 @@ class ProductIn(BaseModel):
     name: str
     category: ProductCategory
     price: float
-
-
-@router.post("/product", summary="Add new product")
-async def add_new_product(db: AsyncSession = Depends(get_db)):
-    await bulk_update_products(db)
-    return ""
