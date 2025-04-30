@@ -17,3 +17,4 @@ nosetests.xml
 coverage.xml
 *.cover
 *.py,cover
+.vscode/

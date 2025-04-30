@@ -1,11 +1,18 @@
+from fastapi.testclient import TestClient
 import pytest_asyncio
-from httpx import AsyncClient
-from httpx import ASGITransport
+import pytest
+from httpx import AsyncClient, ASGITransport
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, async_sessionmaker
 from src.db.core import Base
 from src.main import app
 from src.dependencies import get_db
 from src.rate_limiting import limiter
+
+
+@pytest.fixture
+def test_client():
+    with TestClient(app) as client:
+        yield client
 
 
 # In-memory SQLite URL for async
@@ -35,7 +42,7 @@ async def db_session():
 
 
 @pytest_asyncio.fixture(scope="function")
-async def client(db_session):
+async def asyn_test_client(db_session):
     # Override the DB dependency
     async def override_get_db():
         yield db_session

@@ -87,7 +87,7 @@ async def request_logging_and_id_middleware(request: Request, call_next):
     return response
 
 
-@app.get("/health")
+@app.get("/healthy")
 def health():
     return {"status": "ok"}
 
